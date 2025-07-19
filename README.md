@@ -25,7 +25,7 @@ A complete, production-ready authentication starter built using **Node.js**, **E
 1. **Clone**
 
 ```bash
-git clone https://github.com/your-username/auth-starter-kit.git
+git clone https://github.com/soorajydv/auth-starter-kit
 cd auth-starter-kit
 ````
 
@@ -34,7 +34,7 @@ cd auth-starter-kit
 ```bash
 npm install
 # or
-yarn
+yarn install
 ```
 
 3. **Environment Config**
