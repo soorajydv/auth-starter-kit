@@ -1,0 +1,85 @@
+tags:
+  - name: Auth
+    description: Authentication-related endpoints
+
+paths:
+  /auth/me:
+    get:
+      tags:
+        - Auth
+      summary: Get current authenticated user
+      description: Returns the authenticated user's data and associated profile.
+      operationId: getCurrentUser
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: User retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: User retrieved successfully
+                  data:
+                    type: object
+                    properties:
+                      user:
+                        type: object
+                        properties:
+                          _id:
+                            type: string
+                            example: 681c91f724f3b01481623d6a
+                          name:
+                            type: string
+                            example: soorajydv
+                          email:
+                            type: string
+                            example: soorajydv9@gmail.com
+                          role:
+                            type: string
+                            example: user
+                          isActive:
+                            type: boolean
+                            example: true
+                          isVerified:
+                            type: boolean
+                            example: true
+                          isOauth:
+                            type: boolean
+                            example: false
+                          apiKey:
+                            type: string
+                            example: abc123xyzapikey
+                      profile:
+                        type: object
+                        nullable: true
+                        description: User profile data (nullable if not created)
+                        example:
+                          bio: "Full-stack developer"
+                          website: "https://example.com"
+        '400':
+          description: Error retrieving user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: User not found
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

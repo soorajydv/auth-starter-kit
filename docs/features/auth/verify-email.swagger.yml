@@ -1,0 +1,47 @@
+tags:
+  - name: Auth
+    description: Endpoints related to user authentication and registration
+
+paths:
+  /auth/verify-email/{token}:
+    get:
+      tags:
+        - Auth
+      summary: Verify user email
+      description: Verifies a user's email using a verification token sent to their email address.
+      operationId: verifyEmail
+      parameters:
+        - name: token
+          in: path
+          required: true
+          description: Email verification token sent to the user's email
+          schema:
+            type: string
+            example: "23ddf1e92ad4418b8f7c639d5d2bfa8d"
+      responses:
+        '200':
+          description: Email verified successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Email verified successfully"
+        '400':
+          description: Verification failed due to invalid or expired token, or already verified
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "Invalid or expired verificationToken"
